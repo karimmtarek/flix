@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Creating a new review" do
   it "saves the review and shows the review on the movie's detail page" do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Deleting a movie" do 
   it "destroys the movie and shows the movie listing without the deleted movie" do

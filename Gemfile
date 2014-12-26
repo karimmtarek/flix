@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-# ruby '2.0.0'
+ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -37,10 +37,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-# gem 'spring',        group: :development
+group :development do
+  gem 'spring'
+  gem 'guard-livereload', require: false
+end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '3.1.2'
+gem 'bcrypt-ruby'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -52,12 +55,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # gem 'debugger', group: [:development, :test]
 
 group :test, :development do
-  gem "minitest"
-  gem "rspec-rails", "2.14.1"
+  gem "rspec-rails"
 end
 
 group :test do
-  gem "capybara", "2.2.1"
+  gem "capybara"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

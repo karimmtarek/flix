@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Creating a new movie" do 
   it "saves the movie and shows the new event's details" do    

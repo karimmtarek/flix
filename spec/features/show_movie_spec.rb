@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Viewing an individual movie" do
   it "shows the movie's details" do
