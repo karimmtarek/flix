@@ -9,6 +9,7 @@ describe "Creating a new user" do
     expect(current_path).to eq(signup_path)
 
     fill_in "Name",  with: "Example User"
+    fill_in "Username",  with: "ExampleUser"
     fill_in "Email", with: "user@example.com"
     fill_in "Password", with: "password"
     fill_in "Confirm Password", with: "password"
@@ -19,6 +20,9 @@ describe "Creating a new user" do
 
     expect(page).to have_text('Example User')
     expect(page).to have_text('Thanks for signing up!')
+
+    expect(page).not_to have_link('Sign In')
+    expect(page).not_to have_link('Sign Up')
   end
 
   it "does not save the user if it's invalid" do

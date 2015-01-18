@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :get_user, only: [:show, :edit, :update, :destroy]
+  before_action :get_user, only: [:show]
+  before_action :require_signin, except: [:new, :create]
+  before_action :require_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -16,6 +18,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to @user, notice: 'Thanks for signing up!'
     else
       render :new
@@ -36,6 +39,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    session[:user_id] = nil
     redirect_to root_path, alert: 'Account successfully deleted!'
   end
 
@@ -47,5 +51,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
+  end
+
+  def require_correct_user
+    @user = User.find(params[:id])
+    unless current_user?(@user)
+      redirect_to root_path
+    end
   end
 end
